@@ -16,6 +16,7 @@ Instalation
 
 1. Clone this repository
 2. From the command-line:
+
 ```
 :~$ cd ws-xample
 :~$ composer install
