@@ -18,10 +18,6 @@ Instalation
 2. From the command-line:
 ```
 :~$ cd ws-xample
-:~$ rm -rf app/cache/* app/logs/*
-:~$ HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
-:~$ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX app/cache app/logs
-:~$ sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX app/cache app/logs
 :~$ composer install
 ```
 
@@ -52,6 +48,20 @@ http://localhost/~allucardster/ws-xample/web/app_dev.php/pusher
 ```
 Fill the form and then take a look in the client page:
 ![](docs/images/2017-06-13 12-19-23.png)
+
+Troubleshooting
+==============
+
+### Fix permissions problems ###
+
+From the command line:
+```
+:~$ cd ws-xample
+:~$ rm -rf app/cache/* app/logs/*
+:~$ HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
+:~$ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX app/cache app/logs
+:~$ sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX app/cache app/logs
+```
 
 Contributors
 ============
