@@ -1,0 +1,5 @@
+services:
+    app.topic_xample_service:
+        class: AppBundle\Topic\TopicXample
+        tags:
+            - { name: gos_web_socket.topic }

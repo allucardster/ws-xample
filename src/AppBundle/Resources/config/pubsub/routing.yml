@@ -1,0 +1,4 @@
+topic_xample:
+    channel: app/channel_xample
+    handler:
+        callback: 'topic.xample'
