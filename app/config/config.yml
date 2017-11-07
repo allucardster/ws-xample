@@ -73,13 +73,13 @@ assetic:
 
 gos_web_socket:
     topics:
-        - @app.topic_xample_service
+        - '@app.topic_xample_service'
     server:
         port: 8025
         host: 127.0.0.1
         router:
             resources:
-                - @AppBundle/Resources/config/pubsub/routing.yml
+                - '@AppBundle/Resources/config/pubsub/routing.yml'
     pushers:
         wamp:
             host: 127.0.0.1
