@@ -25,7 +25,7 @@ class DefaultController extends Controller
      */
     public function sendMessageAction(Request $request)
     {
-        $form = $this->createForm(new PusherXampleType(), []);
+        $form = $this->createForm(PusherXampleType::class, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $pusher = $this->get('gos_web_socket.wamp.pusher');
