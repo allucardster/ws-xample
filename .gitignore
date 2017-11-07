@@ -1,23 +1,8 @@
-/web/bundles/
-/app/bootstrap.php.cache
+# Cache and logs (Symfony2)
 /app/cache/*
-/app/config/parameters.yml
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-/app/phpunit.xml
-/build/
-/vendor/
-/bin/
-/composer.phar
-
-# Cache and logs (Symfony2)
-/app/cache
-/app/cache/*
-/app/logs
-/app/logs/*
-app/cache/.gitkeep
-app/logs/.gitkeep
 
 # Email spool folder
 /app/spool/*
@@ -53,11 +38,11 @@ app/logs/.gitkeep
 # Build data
 /build/
 
-# Composer PHAR
-/composer.phar
-
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
 
 # Backup entities generated with doctrine:mongodb:generate:documents command
 **/Document/*~
+
+# Embedded web-server pid file
+/.web-server-pid
