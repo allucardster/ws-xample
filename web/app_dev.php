@@ -21,7 +21,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 /** @var \Composer\Autoload\ClassLoader $loader */
 $loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
-
+require_once __DIR__.'/../app/AppKernel.php';
 $kernel = new AppKernel('dev', true);
 //$kernel->loadClassCache();
 //Request::setTrustedProxies([]);
