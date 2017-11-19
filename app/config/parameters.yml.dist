@@ -10,4 +10,6 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
+    fos_mailer_user:   'noreply@wsxample.dev'
+
     secret:            54ac9c5bd639f6ab0f65b167c2d7611f7d3503cb
