@@ -70,6 +70,15 @@ assetic:
     filters:
         cssrewrite: ~
 
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+            loggable: true
+            blameable: true
+            sluggable: true
+
 gos_web_socket:
     topics:
         - '@app.topic_xample_service'
