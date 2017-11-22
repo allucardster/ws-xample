@@ -15,8 +15,8 @@ Requirements
 Instalation
 ===========
 
-1. Clone this repository
-2. From the command-line:
+- Clone this repository
+- From the command-line:
 
 ```
 :~$ cd ws-xample
@@ -28,7 +28,7 @@ Instalation
 :~$ bower install
 ```
 
-3. Fix `var` directory permission. From the command line:
+- Fix `var` directory permission. From the command line:
 
 ```
 :~$ cd ws-xample
@@ -40,7 +40,7 @@ Instalation
 Configure
 =========
 
-1. Open `app/config/parameters.yml` file and update `gos_client_session_handler` value to `session.handler.pdo`
+- Open `app/config/parameters.yml` file and update `gos_client_session_handler` value to `session.handler.pdo`
 
 ```
 // app/config/parameters.yml
@@ -52,14 +52,14 @@ parameters:
 Configure "wsxample" site in Apache
 ===================================
 
-1. Add `wsxample.dev` to /etc/hosts:
+- Add `wsxample.dev` to /etc/hosts:
 
 ```
 # /etc/hosts
 127.0.0.5         wsxample.dev
 ```
 
-2. Add a new site in apache and configure as following:
+- Add a new site in apache and configure as following:
 
 ```
 <VirtualHost *:80>
