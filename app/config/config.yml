@@ -110,7 +110,7 @@ gos_web_socket:
         - '@app.chat_channel_topic_service'
     client:
         firewall: main
-        session_handler: '@session.handler.pdo'
+        session_handler: '%gos_client_session_handler%'
     server:
         port: 8025
         host: wsxample.dev
