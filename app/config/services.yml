@@ -3,3 +3,7 @@ services:
         class: AppBundle\Topic\TopicXample
         tags:
             - { name: gos_web_socket.topic }
+    app.chat_channel_topic_service:
+        class: AppBundle\Topic\ChatChannelTopic
+        tags:
+            - { name: gos_web_socket.topic }

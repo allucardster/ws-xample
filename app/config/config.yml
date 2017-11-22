@@ -90,6 +90,7 @@ fos_user:
 gos_web_socket:
     topics:
         - '@app.topic_xample_service'
+        - '@app.chat_channel_topic_service'
     server:
         port: 8025
         host: 127.0.0.1
