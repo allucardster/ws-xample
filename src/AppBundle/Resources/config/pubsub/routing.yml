@@ -2,3 +2,8 @@ topic_xample:
     channel: app/channel_xample
     handler:
         callback: 'topic.xample'
+
+chat_channel_topic:
+    channel: app/chat/{channel_slug}/channel
+    handler:
+        callback: 'chat.channel.topic'

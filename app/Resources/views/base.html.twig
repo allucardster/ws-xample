@@ -4,37 +4,95 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            <style>
-                body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
-                h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-                h1 { font-size: 36px; }
-                h2 { font-size: 21px; margin-bottom: 1em; }
-                p { margin: 0 0 1em 0; }
-                a { color: #0000F0; }
-                a:hover { text-decoration: none; }
-                code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
-                #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
-                #container { padding: 2em; }
-                #welcome, #status { margin-bottom: 2em; }
-                #welcome h1 span { display: block; font-size: 75%; }
-                #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
-                #icon-book { display: none; }
-
-                @media (min-width: 768px) {
-                    #wrapper { width: 80%; margin: 2em auto; }
-                    #icon-book { display: inline-block; }
-                    #status a, #next a { display: block; }
-
-                    @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-                    @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-                    .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
-                }
-            </style>
+            {% stylesheets  
+                'vendor/bootstrap/dist/css/bootstrap.min.css'
+                'bundles/app/css/default.css'
+            combine=true filter='cssrewrite' %}
+                <link type="text/css" rel="stylesheet" href="{{ asset_url }}"/>
+            {% endstylesheets %}
         {% endblock %}
+        <base href="/chat/">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('homepage') }}">
+                        WS Xample
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if is_granted("ROLE_ADMIN") %}
+                        <li>
+                            <a href="{{ path('easyadmin') }}" target="_blank">
+                                Admin
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% set loggedLinks = [
+                                    { label: 'Profile', path: 'fos_user_profile_show'},
+                                    { label: 'Logout', path: 'fos_user_security_logout'}
+                                ] %}
+                                {% for link in loggedLinks %}
+                                <li>
+                                    <a href="{{ path(link.path) }}">
+                                        {{ link.label }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                        {% set anonymLinks = [
+                            { label: 'Login', path: 'fos_user_security_login'},
+                            { label: 'Register', path: 'fos_user_registration_register'}
+                        ] %}
+                        {% for link in anonymLinks %}
+                        <li {% if link.path == app.request.attributes.get('_route') %}class="active"{% endif %}>
+                            <a href="{{ path(link.path) }}">
+                                {{ link.label }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts
+                'bundles/goswebsocket/js/vendor/autobahn.min.js'
+                'bundles/goswebsocket/js/gos_web_socket_client.js'
+                'vendor/jquery/dist/jquery.min.js'
+                'vendor/bootstrap/dist/js/bootstrap.min.js'
+                'vendor/angular/angular.min.js'
+                'vendor/angular-ui-router/release/angular-ui-router.min.js'
+                '@AppBundle/Resources/public/app/chat/chat.module.js'
+                '@AppBundle/Resources/public/app/chat/*.js'
+                '@AppBundle/Resources/public/app/core/core.module.js'
+                '@AppBundle/Resources/public/app/core/*.js'
+                '@AppBundle/Resources/public/app/layout/layout.module.js'
+                '@AppBundle/Resources/public/app/layout/*.js'
+                '@AppBundle/Resources/public/app/app.module.js'
+                '@AppBundle/Resources/public/app/*.js'
+            %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>
