@@ -17,6 +17,7 @@ Instalation
 
 1. Clone this repository
 2. From the command-line:
+
 ```
 :~$ cd ws-xample
 :~$ composer install
@@ -26,7 +27,9 @@ Instalation
 :~$ cd web
 :~$ bower install
 ```
+
 3. Fix `var` directory permission. From the command line:
+
 ```
 :~$ cd ws-xample
 :~$ HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
@@ -38,6 +41,7 @@ Configure
 =========
 
 1. Open `app/config/parameters.yml` file and update `gos_client_session_handler` value to `session.handler.pdo`
+
 ```
 // app/config/parameters.yml
 parameters:
@@ -47,12 +51,16 @@ parameters:
 
 Configure "wsxample" site in Apache
 ===================================
+
 1. Add `wsxample.dev` to /etc/hosts:
+
 ```
 # /etc/hosts
 127.0.0.5         wsxample.dev
 ```
+
 2. Add a new site in apache and configure as following:
+
 ```
 <VirtualHost *:80>
     ServerName wsxample_dev
