@@ -11,6 +11,7 @@
                 <link type="text/css" rel="stylesheet" href="{{ asset_url }}"/>
             {% endstylesheets %}
         {% endblock %}
+        <base href="/chat/">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -68,8 +69,20 @@
         {% block body %}{% endblock %}
         {% block javascripts %}
             {% javascripts
+                'bundles/goswebsocket/js/vendor/autobahn.min.js'
+                'bundles/goswebsocket/js/gos_web_socket_client.js'
                 'vendor/jquery/dist/jquery.min.js'
                 'vendor/bootstrap/dist/js/bootstrap.min.js'
+                'vendor/angular/angular.min.js'
+                'vendor/angular-ui-router/release/angular-ui-router.min.js'
+                '@AppBundle/Resources/public/app/chat/chat.module.js'
+                '@AppBundle/Resources/public/app/chat/*.js'
+                '@AppBundle/Resources/public/app/core/core.module.js'
+                '@AppBundle/Resources/public/app/core/*.js'
+                '@AppBundle/Resources/public/app/layout/layout.module.js'
+                '@AppBundle/Resources/public/app/layout/*.js'
+                '@AppBundle/Resources/public/app/app.module.js'
+                '@AppBundle/Resources/public/app/*.js'
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}

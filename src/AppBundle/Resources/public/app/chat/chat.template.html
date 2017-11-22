@@ -1,0 +1,18 @@
+<div class="chat-container">
+    <div class="messages-section">
+        <div class="messages-container padding">
+            <pre>
+                [[ chat.channel|json ]]
+            </pre>
+        </div>
+    </div>
+    <div class="actions-section padding">
+        <div class="actions-container">
+            <form ng-submit="chat.sendMessage()">
+                <div>
+                    <input type="text" class="form-control" placeholder="Write your message" ng-model="chat.message">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

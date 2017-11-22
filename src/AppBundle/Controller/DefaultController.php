@@ -17,7 +17,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/chat", name="chat")
+     * @Route("/chat/", name="chat")
      * @Route("/chat/{all}", name="chat-all", requirements={"all": ".+"})
      */
     public function chatAction(Request $request)
