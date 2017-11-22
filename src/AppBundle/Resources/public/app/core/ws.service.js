@@ -5,7 +5,7 @@ WebSocketService.$inject = ['$q']
 function WebSocketService($q)
 {
     var that = this;
-    this.webSocketUri = "ws://127.0.0.1:8025";
+    this.webSocketUri = "ws://wsxample.dev:8025";
     this.connection = null;
     this.connect = connect;
 

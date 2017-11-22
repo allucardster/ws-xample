@@ -140,6 +140,68 @@ body {
     overflow-y: auto;
 }
 
+/* CSS talk bubble */
+.talk-bubble {
+	margin: 10px;
+    display: inline-block;
+    position: relative;
+    height: auto;
+    border-radius: 5px;
+}
+
+.talk-bubble.left {
+    background-color: #f5f5f5;
+    color: #000;
+    float: left;
+    clear: both;	
+}
+
+.talk-bubble.left:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -20px;
+    right: auto;
+    top: 0px;
+    bottom: auto;
+    border: 22px solid;
+    border-color: #f5f5f5 transparent transparent transparent;
+}
+
+.talk-bubble.right {
+    background-color: #428bca;
+    color: #fff;
+    float: right;
+    clear: both;
+}
+
+.talk-bubble.right:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: -20px;
+    top: 0px;
+    bottom: auto;
+    border: 22px solid;
+    border-color: #428bca transparent transparent transparent;
+}
+
+/* talk bubble contents */
+.talktext {
+    padding: 1em;
+    text-align: left;
+    line-height: 1.5em;
+}
+
+.talktext p {
+    /* remove webkit p margins */
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+
 .chat-container .actions-section {
     position: absolute;
     bottom: 0;

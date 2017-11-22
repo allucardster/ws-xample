@@ -1,9 +1,15 @@
 <div class="chat-container">
     <div class="messages-section">
         <div class="messages-container padding">
-            <pre>
-                [[ chat.messages|json ]]
-            </pre>
+            <div ng-repeat="msg in chat.messages track by $index">
+                <div class="talk-bubble left">
+                    <div class="talktext">
+                        <p>
+                            [[ msg ]]
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="actions-section padding">
