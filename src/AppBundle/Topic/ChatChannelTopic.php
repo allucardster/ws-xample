@@ -5,10 +5,19 @@ namespace AppBundle\Topic;
 use Gos\Bundle\WebSocketBundle\Topic\TopicInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\Topic;
+use Gos\Bundle\WebSocketBundle\Client\ClientManipulatorInterface;
 use Gos\Bundle\WebSocketBundle\Router\WampRequest;
+use AppBundle\Entity\User;
 
 class ChatChannelTopic implements TopicInterface
 {
+    protected $clientManipulator;
+
+    public function __construct(ClientManipulatorInterface $clientManipulator)
+    {
+        $this->clientManipulator = $clientManipulator;
+    }
+
     /**
      * This will receive any Subscription requests for this topic.
      *
@@ -19,8 +28,18 @@ class ChatChannelTopic implements TopicInterface
      */
     public function onSubscribe(ConnectionInterface $connection, Topic $topic, WampRequest $request)
     {
+        $user = $this->clientManipulator->getClient($connection);
+        $username = '';
+        $msgFormat = '%s is connected';
+        if ($user instanceof User) {
+            $username = $user->getUsername();
+        } else {
+            $username = $user;
+        }
         //this will broadcast the message to ALL subscribers of this topic.
-        $topic->broadcast(['msg' => $connection->resourceId . " has joined " . $topic->getId()]);
+        $topic->broadcast([
+            'msg' => sprintf($msgFormat, $username)
+        ]);
     }
 
     /**
@@ -33,8 +52,18 @@ class ChatChannelTopic implements TopicInterface
      */
     public function onUnSubscribe(ConnectionInterface $connection, Topic $topic, WampRequest $request)
     {
+        $user = $this->clientManipulator->getClient($connection);
+        $username = '';
+        $msgFormat = '%s is disconnected';
+        if ($user instanceof User) {
+            $username = $user->getUsername();
+        } else {
+            $username = $user;
+        }
         //this will broadcast the message to ALL subscribers of this topic.
-        $topic->broadcast(['msg' => $connection->resourceId . " has left " . $topic->getId()]);
+        $topic->broadcast([
+            'msg' => sprintf($msgFormat, $username)
+        ]);
     }
 
 
