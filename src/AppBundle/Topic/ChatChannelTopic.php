@@ -38,7 +38,9 @@ class ChatChannelTopic implements TopicInterface
         }
         //this will broadcast the message to ALL subscribers of this topic.
         $topic->broadcast([
-            'msg' => sprintf($msgFormat, $username)
+            'type' => 'connection',
+            'username' => $username,
+            'body' => sprintf($msgFormat, $username)
         ]);
     }
 
@@ -62,7 +64,9 @@ class ChatChannelTopic implements TopicInterface
         }
         //this will broadcast the message to ALL subscribers of this topic.
         $topic->broadcast([
-            'msg' => sprintf($msgFormat, $username)
+            'type' => 'connection',
+            'username' => $username,
+            'body' => sprintf($msgFormat, $username)
         ]);
     }
 
@@ -80,15 +84,17 @@ class ChatChannelTopic implements TopicInterface
      */
     public function onPublish(ConnectionInterface $connection, Topic $topic, WampRequest $request, $event, array $exclude, array $eligible)
     {
-        /*
-        	$topic->getId() will contain the FULL requested uri, so you can proceed based on that
-
-            if ($topic->getId() === 'acme/channel/shout')
-     	       //shout something to all subs.
-        */
-
+        $user = $this->clientManipulator->getClient($connection);
+        $username = '';
+        if ($user instanceof User) {
+            $username = $user->getUsername();
+        } else {
+            $username = $user;
+        }
         $topic->broadcast([
-            'msg' => $event,
+            'type' => 'message',
+            'username' => $username,
+            'body' => $event,
         ]);
     }
 

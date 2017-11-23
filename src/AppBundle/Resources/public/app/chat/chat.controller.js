@@ -24,7 +24,9 @@ function ChatController($scope, slug, WebSocketService) {
 
         function subscribeHandler(uri, payload) {
             console.log('Received message: ', uri, payload);
-            vm.messages.push(payload.msg);
+            if(payload.type == 'message') {
+                vm.messages.push(payload);
+            }
             $scope.$apply();
         }
         

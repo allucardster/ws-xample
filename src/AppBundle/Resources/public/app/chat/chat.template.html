@@ -7,8 +7,9 @@
             <div ng-repeat="msg in chat.messages track by $index">
                 <div class="talk-bubble left">
                     <div class="talktext">
+                        <strong>[[ msg.username ]]</strong>
                         <p>
-                            [[ msg ]]
+                            [[ msg.body ]]
                         </p>
                     </div>
                 </div>
