@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        angular.module('wsx').value('User', {{ app.user|serialize|raw }});
+    </script>
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid" ng-app="wsx">
     <div class="row">

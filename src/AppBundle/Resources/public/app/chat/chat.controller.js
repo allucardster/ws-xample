@@ -1,13 +1,14 @@
 angular.module('wsx.chat').controller('ChatController', ChatController);
 
-ChatController.$inject = ['$scope', 'slug', 'WebSocketService'];
+ChatController.$inject = ['$scope', 'slug', 'WebSocketService', 'User'];
 
-function ChatController($scope, slug, WebSocketService) {
+function ChatController($scope, slug, WebSocketService, User) {
     /* virtual model */
     var vm = this;
     vm.channel = {
         slug: slug
     };
+    vm.user = User;
     vm.messages = [];
     vm.message = '';
     vm.webSocketSession = null;
