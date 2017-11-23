@@ -88,6 +88,9 @@ easy_admin:
     entities:
         Channel:
             class: AppBundle\Entity\Channel
+            form:
+                fields:
+                    - 'name'
 
 fos_user:
     db_driver: orm

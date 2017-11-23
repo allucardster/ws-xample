@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use AppBundle\Entity\Channel;
 
 class ChannelController extends FOSRestController
 {
@@ -15,17 +16,8 @@ class ChannelController extends FOSRestController
      */
     public function listAction($page)
     {
-        return [
-            [
-                'id' => 1,
-                'name' => 'General',
-                'slug' => 'general'
-            ],
-            [
-                'id' => 2,
-                'name' => 'Lorem ipsum',
-                'slug' => 'lorem-ipsum'
-            ]
-        ];
+        // TODO: Create a manager and support pagination for the channel list
+        $repository = $this->getDoctrine()->getRepository(Channel::class);
+        return $repository->findAll();
     }
 }
