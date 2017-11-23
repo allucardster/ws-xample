@@ -4,6 +4,7 @@ function wsxSidebar() {
     return {
         restrict: 'A',
         templateUrl: '/bundles/app/app/layout/sidebar.template.html',
-        controller: 'SidebarController'
+        controller: 'SidebarController',
+        controllerAs: 'sb'
     };
 }

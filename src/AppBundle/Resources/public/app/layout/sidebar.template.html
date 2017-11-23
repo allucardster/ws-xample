@@ -1,10 +1,11 @@
 <ul class="nav nav-sidebar">
     <li class="dropdown-header">
-        <strong>Channels</strong>
+        <strong ng-show="sb.status.loading">Loading Channels...</strong>
+        <strong ng-hide="sb.status.loading">Channels</strong>
     </li>
-    <li ui-sref-active="active">
-        <a ui-sref="chat({channelSlug: 'general'})">
-            General
+    <li ng-hide="sb.status.loading" ng-repeat="channel in sb.channels track by $index" ui-sref-active="active">
+        <a ui-sref="chat({slug: channel.slug})">
+            [[ channel.name ]]
         </a>
     </li>
 </ul>

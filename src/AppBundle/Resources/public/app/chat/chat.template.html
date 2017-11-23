@@ -1,6 +1,9 @@
 <div class="chat-container">
     <div class="messages-section">
         <div class="messages-container padding">
+            <div>
+                <pre>[[ chat.channel|json ]]</pre>
+            </div>
             <div ng-repeat="msg in chat.messages track by $index">
                 <div class="talk-bubble left">
                     <div class="talktext">

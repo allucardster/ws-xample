@@ -7,23 +7,29 @@ function WebSocketService($q)
     var that = this;
     this.webSocketUri = "ws://wsxample.dev:8025";
     this.connection = null;
+    this.session = null;
+    this.error = null;
     this.connect = connect;
 
     function connect()
     {
         var deferred = $q.defer();
         
-        if (!that.connection) {
-            this.connection = WS.connect(that.webSocketUri);
-        }
+        if (that.connection) {
+            deferred.resolve(that.session);
+        } else {
+            that.connection = WS.connect(that.webSocketUri);
 
-        this.connection.on("socket/connect", function(session) {
-            deferred.resolve(session);
-        });
-        
-        this.connection.on("socket/disconnect", function(error) {
-            deferred.reject(error);
-        });
+            that.connection.on("socket/connect", function(session) {
+                that.session = session;
+                deferred.resolve(session);
+            });
+            
+            that.connection.on("socket/disconnect", function(error) {
+                that.error = error;
+                deferred.reject(error);
+            });
+        }
         return deferred.promise
     }
 }

@@ -22,13 +22,13 @@ function Routing($stateProvider, $urlRouterProvider, $locationProvider) {
         controllerAs: 'main'
     };
     var chat = {
-        url: '/{channelSlug}/channel',
+        url: '/{slug}/channel',
         templateUrl: '/bundles/app/app/chat/chat.template.html',
         controller: 'ChatController',
         controllerAs: 'chat',
         resolve: {
-            channelSlug: function($transition$) {
-                return $transition$.params().channelSlug;
+            slug: function($transition$) {
+                return $transition$.params().slug;
             }
         }
     }

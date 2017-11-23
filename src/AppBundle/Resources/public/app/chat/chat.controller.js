@@ -1,11 +1,13 @@
 angular.module('wsx.chat').controller('ChatController', ChatController);
 
-ChatController.$inject = ['$scope', 'channelSlug', 'WebSocketService'];
+ChatController.$inject = ['$scope', 'slug', 'WebSocketService'];
 
-function ChatController($scope, channelSlug, WebSocketService) {
+function ChatController($scope, slug, WebSocketService) {
     /* virtual model */
     var vm = this;
-    vm.channel = null;
+    vm.channel = {
+        slug: slug
+    };
     vm.messages = [];
     vm.message = '';
     vm.webSocketSession = null;
@@ -13,21 +15,12 @@ function ChatController($scope, channelSlug, WebSocketService) {
 
     init();
 
-    function getChannelBySlug(slug) {
-        var channel = {
-            id: 1,
-            name: slug,
-            slug: slug
-        };
-        return channel;
-    }
-
     function getTopicBySlug(slug) {
         return ['app/chat', slug, 'channel'].join('/');
     }
 
     function init() {
-        vm.channel = getChannelBySlug(channelSlug);
+        WebSocketService.connect().then(connectionSuccessHandler, connectionFailuerHandler);
 
         function subscribeHandler(uri, payload) {
             console.log('Received message: ', uri, payload);
@@ -44,8 +37,6 @@ function ChatController($scope, channelSlug, WebSocketService) {
         function connectionFailuerHandler(error) {
             console.log('Websocket server connection failed', error);
         }
-
-        WebSocketService.connect().then(connectionSuccessHandler, connectionFailuerHandler);
     }
 
     function sendMessage() {
