@@ -81,7 +81,6 @@ stof_doctrine_extensions:
 
 easy_admin:
     site_name: 'WS Xample Admin'
-    disabled_actions: ['delete']
     design:
         brand_color: '#222'
         color_scheme: 'light'
