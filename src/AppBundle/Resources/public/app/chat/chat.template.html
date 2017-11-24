@@ -1,6 +1,6 @@
 <div class="chat-container">
     <div class="messages-section">
-        <div class="messages-container padding">
+        <div class="messages-container padding" scroll-glue>
             <div ng-repeat="msg in chat.messages track by $index">
                 <div class="talk-bubble" ng-class="{'right': chat.user.username == msg.username, 'left': chat.user.username != msg.username}">
                     <div class="talktext">

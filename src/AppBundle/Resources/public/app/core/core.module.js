@@ -1,3 +1,4 @@
 angular.module('wsx.core', [
-    'ui.router'
+    'ui.router',
+    'luegg.directives'
 ]);
