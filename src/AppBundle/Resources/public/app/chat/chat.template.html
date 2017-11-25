@@ -15,11 +15,34 @@
     </div>
     <div class="actions-section padding">
         <div class="actions-container">
-            <form ng-submit="chat.sendMessage()">
-                <div>
-                    <input type="text" class="form-control" placeholder="Write your message" ng-model="chat.message">
+            <form role="form" ng-submit="chat.sendMessage()">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control" placeholder="Write your message" ng-model="chat.message" />
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn">Send</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
+            <!--
+            <form class="form-inline" ng-submit="chat.sendMessage()">
+                <div class="form-group md-col-10">
+                    <input type="text" class="form-control" placeholder="Write your message" ng-model="chat.message">
+                </div>
+                <button type="submit pull-right" class="btn btn-default">Send</button>
+            </form>
+            -->
+            <!--
+            <form ng-submit="chat.sendMessage()">
+                <div>
+                    <input type="text" placeholder="Write your message" ng-model="chat.message">
+                    <button class="btn btn-default" type="submit">Send</button>
+                </div>
+            </form>
+            -->
         </div>
     </div>
 </div>

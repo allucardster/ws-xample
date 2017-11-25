@@ -83,6 +83,9 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     border-right: 1px solid #eee;
+    width: 100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;
 }
 
 .main .padding {
