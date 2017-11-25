@@ -109,19 +109,19 @@ fos_rest:
         view_response_listener: 'force'
 
 gos_web_socket:
+    server:
+        host: '%gos_server_host%'
+        port: '%gos_server_port%'
+        router:
+            resources:
+                - '@AppBundle/Resources/config/pubsub/routing.yml'
     topics:
         - '@app.topic_xample_service'
         - '@app.chat_channel_topic_service'
     client:
         firewall: main
         session_handler: '%gos_client_session_handler%'
-    server:
-        port: 8025
-        host: wsxample.dev
-        router:
-            resources:
-                - '@AppBundle/Resources/config/pubsub/routing.yml'
     pushers:
         wamp:
-            host: 127.0.0.1
-            port: 8025
+            host: '%gos_server_host%'
+            port: '%gos_server_port%'

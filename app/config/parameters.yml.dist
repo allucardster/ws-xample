@@ -14,4 +14,6 @@ parameters:
 
     secret:            54ac9c5bd639f6ab0f65b167c2d7611f7d3503cb
 
+    gos_server_host: wsxample.dev
+    gos_server_port: 8025
     gos_client_session_handler: ~
