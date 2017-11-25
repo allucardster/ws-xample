@@ -1,11 +1,11 @@
 angular.module('wsx.core').service('WebSocketService', WebSocketService);
 
-WebSocketService.$inject = ['$q']
+WebSocketService.$inject = ['$q', 'wsURI']
 
-function WebSocketService($q)
+function WebSocketService($q, wsURI)
 {
     var that = this;
-    this.webSocketUri = "ws://wsxample.dev:8025";
+    this.webSocketUri = wsURI;
     this.connection = null;
     this.session = null;
     this.error = null;

@@ -4,6 +4,7 @@
     {{ parent() }}
     <script type="application/javascript">
         angular.module('wsx').value('User', {{ app.user|serialize|raw }});
+        angular.module('wsx').value('wsURI', "ws://{{ gos_web_socket_server_host }}:{{ gos_web_socket_server_port }}")
     </script>
 {% endblock %}
 
