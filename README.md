@@ -56,7 +56,7 @@ Configure "wsxample" site in Apache
 
 ```
 # /etc/hosts
-127.0.0.5         wsxample.dev
+127.0.0.5         wsxample.loc
 ```
 
 - Add a new site in apache and configure as following:
@@ -65,7 +65,7 @@ Configure "wsxample" site in Apache
 <VirtualHost *:80>
     ServerName wsxample_dev
 
-    ServerAlias wsxample.dev www.wsxample.dev 127.0.0.5
+    ServerAlias wsxample.loc www.wsxample.loc 127.0.0.5
 
     DocumentRoot /path/to/ws-xample/web
 

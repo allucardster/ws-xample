@@ -1,4 +1,4 @@
-var webSocket = WS.connect("ws://127.0.0.1:8025");
+var webSocket = WS.connect("ws://wsxample.loc:8025");
 
 webSocket.on("socket/connect", function(session){
     //session is an Autobahn JS WAMP session.
