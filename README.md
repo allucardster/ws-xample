@@ -52,7 +52,7 @@ parameters:
 Configure "wsxample" site in Apache
 ===================================
 
-- Add `wsxample.dev` to /etc/hosts:
+- Add `wsxample.loc` to /etc/hosts:
 
 ```
 # /etc/hosts
